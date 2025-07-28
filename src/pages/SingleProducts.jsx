@@ -23,7 +23,7 @@ function SingleProducts() {
             <p className="text-3xl font-bold mb-3 text-[#eb5971]">
               $<span className="text-3xl">{product.price}</span>
             </p>
-            <p className="mb-3">{product.discription}</p>
+            <p className="mb-3">{product.description}</p>
             <p className="text-xl font-bold">
               Brand:{" "}
               <span className="font-normal italic text-[#00a9e7]">
