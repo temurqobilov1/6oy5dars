@@ -7,7 +7,7 @@ function Register() {
       className="w-[460px]  mt-10 mx-auto bg-[#f2f4f7]  flex flex-col gap-4 py-3 px-6  rounded-xl shadow-2xl"
     >
       <div className="mx-auto mb-4">
-        <h1 className="text-5xl font-bold text-[#166fe5]">Sign in</h1>
+        <h1 className="text-5xl font-bold text-[#166fe5]">Sign up</h1>
       </div>
       <div className="mx-auto mb-3">
         <input
