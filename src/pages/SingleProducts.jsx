@@ -1,22 +1,35 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useFetch } from "../hooks/useFetch";
 import { useParams } from "react-router-dom";
 
 function SingleProducts() {
   const { id } = useParams();
-  const [product, setProduct] = useState(null);
+  const {
+    data: product,
+    isPending,
+    error,
+  } = useFetch("https://dummyjson.com/product/" + id);
 
-  useEffect(() => {
-    axios("https://dummyjson.com/product/" + id)
-      .then(({ data }) => setProduct(data))
-      .catch((error) => console.log(error.message));
-  }, [id]);
+  if (isPending) {
+    return (
+      <div className="flex items-center justify-center mt-60">
+        <span className="loading loading-spinner loading-xl "></span>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex items-center justify-center mt-60">
+        <h1 className="text-2xl italic">{error}</h1>
+      </div>
+    );
+  }
   return (
     <>
       {product && (
         <div className="flex items-center justify-between p-10 shadow-xl/30 mt-20 max-w-4xl mx-auto rounded-2xl">
           <div className="w-[40%]">
-            <img className="" src={product.thumbnail} alt="Album"/>
+            <img className="" src={product.thumbnail} alt="Album" />
           </div>
           <div className=" w-[60%]">
             <h2 className="text-4xl mb-3">{product.title}</h2>

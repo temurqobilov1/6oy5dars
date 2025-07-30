@@ -20,8 +20,7 @@ function Navbar() {
             </li>
           </ul>
         </div>
-        <div className="navbar-end">
-        </div>
+        <div className="navbar-end"></div>
       </div>
     </header>
   );

@@ -1,21 +1,31 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import ProductList from "../components/ProductList";
+import { useFetch } from "../hooks/useFetch";
 
 function Home() {
-  const [products, setProducts] = useState(null);
-  useEffect(() => {
-    axios("https://dummyjson.com/product")
-      .then(({ data }) => setProducts(data.products))
-      .catch((error) => console.log(error.message));
-  }, []);
+  const {
+    data:products,isPending,error,
+  } = useFetch("https://dummyjson.com/product");
+  
+  if (isPending) {
+    return (
+      <div className="flex items-center justify-center mt-60">
+        <span className="loading loading-spinner loading-xl "></span>
+      </div>
+    );
+  }
 
-  return <>
-  <section className="container"> 
-    <h2 className="text-3xl mb-8 mt-5 ml-5">Products:</h2>
-    {products && <ProductList products={products} />}
-    </section>;
-  </>;
+  if (error) {
+    return (
+      <div className="flex items-center justify-center mt-60">
+        <h1 className="text-2xl italic">{error}</h1>
+      </div>
+    );
+  }
+  return (
+    <section className="container">
+      {products && <ProductList products={products.products} /> }
+    </section>
+  )
 }
 
 export default Home;

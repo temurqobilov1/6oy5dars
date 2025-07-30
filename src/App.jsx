@@ -2,15 +2,27 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import MainLayout from "./layouts/MainLayout";
-
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SingleProducts from "./pages/SingleProducts";
+import ProtectedRoutes from "./components/ProtectedRoutes";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 
 function App() {
+  let user = false;
   const routes = createBrowserRouter([
     {
       path: "/",
-      element: <MainLayout />,
+      element: (
+        <ProtectedRoutes user={user}>
+          <MainLayout />
+        </ProtectedRoutes>
+      ),
       children: [
         {
           path: "/",
@@ -26,9 +38,17 @@ function App() {
         },
         {
           path: "/singleProduct/:id",
-          element: <SingleProducts/>,
+          element: <SingleProducts />,
         },
       ],
+    },
+    {
+      path: "/login",
+      element: user ? <Navigate to="/" /> : <Login />,
+    },
+    {
+      path: "/register",
+      element: user ? <Navigate to="/" /> : <Register />,
     },
   ]);
   return <RouterProvider router={routes} />;
