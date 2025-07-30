@@ -22,7 +22,7 @@ function Login() {
        <hr className="w-[300px] text-center text-[#868686]"/>
       </div>
       <div className="mx-auto mb-3">
-       <NavLink to="/register"><button className="border text-[#fff] rounded text-2xl w-[200px] h-13 bg-[#36a420] hover:cursor-pointer">Sign in</button></NavLink>
+       <NavLink to="/register"><button className="border text-[#fff] rounded text-2xl w-[200px] h-13 bg-[#36a420] hover:cursor-pointer">Sign up</button></NavLink>
       </div>
       </form>
   )

@@ -69,7 +69,7 @@ function Register() {
       </div>
       <div className="mx-auto mb-3">
         <button type="submit" className="border text-white rounded text-2xl w-[360px] h-13 bg-[#166fe5] hover:cursor-pointer">
-          Sign in
+          Sign up
         </button>
       </div>
       <div className="mx-auto mb-3">
