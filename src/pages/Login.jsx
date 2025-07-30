@@ -13,7 +13,7 @@ function Login() {
         <input className="border text-black px-3 rounded text-xl w-[360px] h-13" type="password" placeholder="Password"/>
       </div>
         <div className="mx-auto mb-3">
-        <button className="border text-white rounded text-2xl w-[360px] h-13 bg-[#166fe5] hover:cursor-pointer">Login</button>
+        <button type="submit" className="border text-white rounded text-2xl w-[360px] h-13 bg-[#166fe5] hover:cursor-pointer">Login</button>
       </div>
       <div className="mx-auto mb-3">
        <h2 className="text-[#166fe5] italic">Forgot your account?</h2>
