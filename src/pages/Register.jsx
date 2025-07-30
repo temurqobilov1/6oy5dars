@@ -72,10 +72,9 @@ function Register() {
           Sign in
         </button>
       </div>
-      <div className="mx-auto mb-3 flex items-center gap-3">
-        <h3 className="italic text-[#3e3e3e]">If you have registered before!</h3>
+      <div className="mx-auto mb-3">
         <NavLink to="/login">
-        <p className="italic text-[#166fe5] hover:underline">Login</p>
+        <p className="italic text-[#166fe5] hover:underline">Do you already have an account?</p>
         </NavLink>
       </div>
     </form>
