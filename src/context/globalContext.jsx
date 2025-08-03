@@ -48,7 +48,10 @@ const changeState = (state, action) => {
         totalPrice: payload.price,
       };
     case "CLEAR":
-      return { initialState };
+      return {
+        totalAmount: 0,
+        totalPrice: 0,
+      };
     default:
       return state;
   }
@@ -68,8 +71,7 @@ export function GlobalContextProvider({ children }) {
 
     dispatch({ type: "CHANGE_AMOUNT_PRICE", payload: { price, amount } });
 
-    localStorage.setItem("products", JSON.stringify(state))
-
+    localStorage.setItem("products", JSON.stringify(state));
   }, [state.products]);
 
   return (
