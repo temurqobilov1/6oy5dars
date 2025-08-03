@@ -30,28 +30,28 @@ function Register() {
         />
       </div>
       <div className="mx-auto mb-3 flex items-center gap-5">
-          <label className="text-xl  hover:cursor-pointer" id="male">
-        <div className="flex items-center justify-around border w-[170px] px-3 rounded text-2xl h-10  hover:cursor-pointer">
+        <label className="text-xl  hover:cursor-pointer" id="male">
+          <div className="flex items-center justify-around border w-[170px] px-3 rounded text-2xl h-10  hover:cursor-pointer">
             Male
-          <input
-            className=" hover:cursor-pointer "
-            type="radio"
-            id="male"
-            name="typeone"
-          />
-        </div>
-          </label>
-          <label className="text-xl  hover:cursor-pointer" id="female">
-        <div className="flex items-center justify-around border w-[170px] px-3 rounded text-2xl h-10  hover:cursor-pointer">
+            <input
+              className=" hover:cursor-pointer "
+              type="radio"
+              id="male"
+              name="typeone"
+            />
+          </div>
+        </label>
+        <label className="text-xl  hover:cursor-pointer" id="female">
+          <div className="flex items-center justify-around border w-[170px] px-3 rounded text-2xl h-10  hover:cursor-pointer">
             Female
-          <input
-            className="hover:cursor-pointer "
-            type="radio"
-            id="female"
-            name="typeone"
-          />
-        </div>
-          </label>
+            <input
+              className="hover:cursor-pointer "
+              type="radio"
+              id="female"
+              name="typeone"
+            />
+          </div>
+        </label>
       </div>
       <div className="mx-auto mb-3">
         <input
@@ -68,13 +68,18 @@ function Register() {
         />
       </div>
       <div className="mx-auto mb-3">
-        <button type="submit" className="border text-white rounded text-2xl w-[360px] h-13 bg-[#166fe5] hover:cursor-pointer">
+        <button
+          type="submit"
+          className="border text-white rounded text-2xl w-[360px] h-13 bg-[#166fe5] hover:cursor-pointer"
+        >
           Sign up
         </button>
       </div>
       <div className="mx-auto mb-3">
         <NavLink to="/login">
-        <p className="italic text-[#166fe5] hover:underline">Do you already have an account?</p>
+          <p className="italic text-[#166fe5] hover:underline">
+            Do you already have an account?
+          </p>
         </NavLink>
       </div>
     </form>

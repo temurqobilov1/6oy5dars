@@ -26,8 +26,9 @@ function SingleProducts() {
   }
   return (
     <>
+    <h2 className="text-center text-3xl my-7">ProducList</h2>
       {product && (
-        <div className="flex items-center justify-between p-10 shadow-xl/30 mt-20 max-w-4xl mx-auto rounded-2xl">
+        <div className="flex items-center justify-between p-10 shadow-xl/30 max-w-4xl mx-auto rounded-2xl">
           <div className="w-[40%]">
             <img className="" src={product.thumbnail} alt="Album" />
           </div>
