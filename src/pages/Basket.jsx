@@ -17,7 +17,7 @@ function Basket() {
             Total Price: <span className="text-[#eb5971]">${totalPrice}</span>
           </h3>
           <button
-            onClick={() => dispatch({ type: "CLEAR" })}
+            onClick={() => dispatch({ type: "CLEAR", payload: products.id })}
             className="btn btn-outline btn-secondary"
           >
             Clear All
