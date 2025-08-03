@@ -3,6 +3,17 @@ import { createContext } from "react";
 
 export const GlobalContext = createContext();
 
+const initialState = () => {
+  return localStorage.getItem("products")
+    ? JSON.parse(localStorage.getItem("products"))
+    : {
+        user: true,
+        products: [],
+        totalAmount: 0,
+        totalPrice: 0,
+      };
+};
+
 const changeState = (state, action) => {
   const { payload, type } = action;
 
@@ -22,12 +33,13 @@ const changeState = (state, action) => {
     case "DECREASE_AMOUNT":
       return {
         ...state,
-        products: state.products.map((product) =>
-          product.id == payload
-           ? { ...product, amount: Math.max(0, product.amount - 1) }
+        products: state.products
+          .map((product) =>
+            product.id == payload
+              ? { ...product, amount: Math.max(0, product.amount - 1) }
               : product
           )
-          .filter((product) => product.amount > 0)
+          .filter((product) => product.amount > 0),
       };
     case "CHANGE_AMOUNT_PRICE":
       return {
@@ -36,24 +48,14 @@ const changeState = (state, action) => {
         totalPrice: payload.price,
       };
     case "CLEAR":
-      return {
-        user: true,
-        products: [],
-        totalAmount: 0,
-        totalPrice: 0,
-      };
+      return { initialState };
     default:
       return state;
   }
 };
 
 export function GlobalContextProvider({ children }) {
-  const [state, dispatch] = useReducer(changeState, {
-    user: true,
-    products: [],
-    totalAmount: 0,
-    totalPrice: 0,
-  });
+  const [state, dispatch] = useReducer(changeState, initialState());
 
   useEffect(() => {
     let price = 0;
@@ -65,8 +67,10 @@ export function GlobalContextProvider({ children }) {
     });
 
     dispatch({ type: "CHANGE_AMOUNT_PRICE", payload: { price, amount } });
+
+    localStorage.setItem("products", JSON.stringify(state))
+
   }, [state.products]);
-  console.log(state);
 
   return (
     <GlobalContext.Provider value={{ ...state, dispatch }}>
