@@ -48,7 +48,7 @@ const changeState = (state, action) => {
         totalPrice: payload.price,
       };
     case "CLEAR":
-      return {initialState};
+      return {...state, products: []};
     default:
       return state;
   }
