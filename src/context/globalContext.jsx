@@ -8,7 +8,7 @@ const initialState = () => {
     ? JSON.parse(localStorage.getItem("products"))
     : {
         user: true,
-        products: [],
+        products:[],
         totalAmount: 0,
         totalPrice: 0,
       };
@@ -48,7 +48,7 @@ const changeState = (state, action) => {
         totalPrice: payload.price,
       };
     case "CLEAR":
-      return { initialState };
+      return {initialState};
     default:
       return state;
   }
