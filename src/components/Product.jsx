@@ -15,7 +15,6 @@ function Product({ prod }) {
       dispatch({ type: "ADD_PRODUCT", payload: { ...prod, amount: 1 } });
     }
   };
-
   return (
     <>
       <Link to={`/singleProduct/${prod.id}`}>

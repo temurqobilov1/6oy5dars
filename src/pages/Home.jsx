@@ -23,7 +23,7 @@ function Home() {
   }
   return (
     <section className="container">
-      {products && <ProductList products={products.products} /> }
+      {products && <ProductList products={products.products} /> }z
     </section>
   )
 }

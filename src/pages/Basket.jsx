@@ -32,8 +32,8 @@ function Basket() {
               <>
               <BasketItem key={product.id} product={product} />
               </>
-            );
-          })};
+            )
+          })}
         </div>
       )}
 

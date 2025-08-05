@@ -8,7 +8,7 @@ const initialState = () => {
     ? JSON.parse(localStorage.getItem("products"))
     : {
         user: true,
-        products:[],
+        products: [],
         totalAmount: 0,
         totalPrice: 0,
       };
@@ -48,7 +48,7 @@ const changeState = (state, action) => {
         totalPrice: payload.price,
       };
     case "CLEAR":
-      return {...state, products: []};
+      return { ...state, products: [] };
     default:
       return state;
   }
@@ -68,8 +68,7 @@ export function GlobalContextProvider({ children }) {
 
     dispatch({ type: "CHANGE_AMOUNT_PRICE", payload: { price, amount } });
 
-    localStorage.setItem("products", JSON.stringify(state))
-
+    localStorage.setItem("products", JSON.stringify(state));
   }, [state.products]);
 
   return (
