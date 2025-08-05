@@ -19,7 +19,7 @@ function BasketItem({ product }) {
       type: "DECREASE_AMOUNT",
       payload: product.id,
     });
-  };
+  }
 
   return (
     <Link
