@@ -3,9 +3,11 @@ import { useFetch } from "../hooks/useFetch";
 
 function Home() {
   const {
-    data:products,isPending,error,
+    data: products,
+    isPending,
+    error,
   } = useFetch("https://dummyjson.com/product");
-  
+
   if (isPending) {
     return (
       <div className="flex items-center justify-center mt-60">
@@ -23,9 +25,9 @@ function Home() {
   }
   return (
     <section className="container">
-      {products && <ProductList products={products.products} /> }z
+      {products && <ProductList products={products.products} />}z
     </section>
-  )
+  );
 }
 
 export default Home;

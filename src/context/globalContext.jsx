@@ -48,6 +48,8 @@ const changeState = (state, action) => {
         totalPrice: payload.price,
       };
     case "CLEAR":
+      let req = confirm(`Rostan ham ushbu ma'lumotlarni ochirmoqchimisiz ? `)
+      if (!req) return state;
       return { ...state, products: [] };
     default:
       return state;
