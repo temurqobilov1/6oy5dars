@@ -1,12 +1,16 @@
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
+import {
+  About,
+  Basket,
+  Contact,
+  Home,
+  Login,
+  Register,
+  SingleProducts,
+} from "./pages";
+
 import MainLayout from "./layouts/MainLayout";
-import SingleProducts from "./pages/SingleProducts";
 import ProtectedRoutes from "./components/ProtectedRoutes";
-import Register from "./pages/Register";
-import Login from "./pages/Login";
-import Basket from "./pages/Basket";
+
 import { useGlobalContext } from "./hooks/useGlobalContext";
 
 import {

@@ -11,10 +11,10 @@ function Navbar() {
     <header className="container bg-base-200 fixed top-0 left-0 w-ful z-50 ">
       <div className="navbar">
         <div className="navbar-start">
-          <h2 className="flex items-center">
-            <h1 className="text-4xl"><FcShop /></h1>
+          <div  className="flex items-center">
+            <p className="text-4xl"><FcShop /></p>
             <h2 className="text-xl">Store</h2>
-          </h2>
+          </div>
         </div>
         <div className="navbar-center">
           <ul className="menu menu-horizontal">
@@ -36,7 +36,6 @@ function Navbar() {
             </span>
             <NavLink to="/basket" className="btn">
               <p className="text-2xl">
-                {" "}
                 <FaShoppingCart />
               </p>
             </NavLink>
