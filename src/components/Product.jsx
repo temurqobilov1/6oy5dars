@@ -13,6 +13,7 @@ function Product({ prod }) {
       dispatch({ type: "INCREASE_AMOUNT", payload: prod.id });
     } else {
       dispatch({ type: "ADD_PRODUCT", payload: { ...prod, amount: 1 } });
+      ("Mahsulot savatchaga qoshildi!");
     }
   };
   return (

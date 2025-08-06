@@ -64,7 +64,7 @@ export function GlobalContextProvider({ children }) {
     let amount = 0;
 
     state.products.forEach((product) => {
-      price += Math.round(product.amount * product.price);
+      price += product.amount * product.price;
       amount += product.amount;
     });
 

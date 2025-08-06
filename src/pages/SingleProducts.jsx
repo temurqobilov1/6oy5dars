@@ -38,7 +38,7 @@ function SingleProducts() {
     }
   };
   const handleClose = () => {
-    window.history.back(); 
+    history.back(); 
   };
   return (
     <>
