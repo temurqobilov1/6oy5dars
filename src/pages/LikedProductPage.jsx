@@ -10,7 +10,7 @@ function LikedProductsPage() {
   };
 
   const handleSubmit = (prod) => {
-    const item = products.find((product) => product.id === prod.id);
+    const item = products?.find((product) => product.id === prod.id);
 
     if (item) {
       dispatch({ type: "INCREASE_AMOUNT", payload: prod.id });
