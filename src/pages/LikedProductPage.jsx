@@ -5,12 +5,17 @@ import { FaHeart } from "react-icons/fa6";
 function LikedProductsPage() {
   const { likedProducts, products, dispatch } = useGlobalContext();
 
+  // Liked dan o'chirish
   const removeLiked = (id) => {
     dispatch({ type: "REMOVE_LIKED", payload: id });
   };
 
+  // Savatchaga qo‘shish
   const handleSubmit = (prod) => {
-    const item = products?.find((product) => product.id === prod.id);
+    // HIMOYA: products mavjudligini tekshiramiz
+    if (!products) return;
+
+    const item = products.find((product) => product.id === prod.id);
 
     if (item) {
       dispatch({ type: "INCREASE_AMOUNT", payload: prod.id });
@@ -19,11 +24,19 @@ function LikedProductsPage() {
     }
   };
 
+  // Agar products hali yuklanmagan bo‘lsa
+  if (!products) {
+    return (
+      <div className="container mx-auto p-4 text-center">
+        <h2 className="text-2xl font-semibold">Loading products...</h2>
+      </div>
+    );
+  }
+
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold my-8 text-center">
-        Favorite products
-      </h1>
+      <h1 className="text-3xl font-bold my-8 text-center">Favorite products</h1>
+
       {likedProducts.length === 0 ? (
         <p className="text-center text-2xl mt-30">No your favorite products.</p>
       ) : (
