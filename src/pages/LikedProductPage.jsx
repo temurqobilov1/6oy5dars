@@ -10,9 +10,7 @@ function LikedProductsPage() {
   };
 
   const handleSubmit = (prod) => {
-    if (!products) return;
-
-    const item = products.map((product) => product.id === prod.id);
+    const item = products.find((product) => product.id === prod.id);
 
     if (item) {
       dispatch({ type: "INCREASE_AMOUNT", payload: prod.id });
@@ -20,18 +18,12 @@ function LikedProductsPage() {
       dispatch({ type: "ADD_PRODUCT", payload: { ...prod, amount: 1 } });
     }
   };
-  if (!products) {
-    return (
-      <div className="container mx-auto p-4 text-center">
-        <h2 className="text-2xl font-semibold">Loading products...</h2>
-      </div>
-    );
-  }
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold my-8 text-center">Favorite products</h1>
-
+      <h1 className="text-3xl font-bold my-8 text-center">
+        Favorite products
+      </h1>
       {likedProducts.length === 0 ? (
         <p className="text-center text-2xl mt-30">No your favorite products.</p>
       ) : (

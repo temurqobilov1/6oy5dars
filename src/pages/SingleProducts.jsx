@@ -29,7 +29,7 @@ function SingleProducts() {
     );
   }
   const handleSubmit = () => {
-    const item = products.map((product) => product.id == prod.id);
+    const item = products.find((product) => product.id == prod.id);
 
     if (item) {
       dispatch({ type: "INCREASE_AMOUNT", payload: prod.id });
