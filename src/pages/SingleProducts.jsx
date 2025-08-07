@@ -1,7 +1,7 @@
 import { useFetch } from "../hooks/useFetch";
 import { useParams } from "react-router-dom";
 import { useGlobalContext } from "../hooks/useGlobalContext";
-import { FaRegCircleXmark } from "react-icons/fa6";
+import { FaXmark } from "react-icons/fa6";
 
 function SingleProducts() {
   const { dispatch, products } = useGlobalContext();
@@ -38,20 +38,25 @@ function SingleProducts() {
     }
   };
   const handleClose = () => {
-    history.back(); 
+    history.back();
   };
   return (
     <>
-      <h2 className="text-center text-3xl my-7">ProducList</h2>
+      <h2 className="text-center text-3xl my-7 font-bold">SingleProduct</h2>
       {prod && (
-        <div className="flex items-center justify-between p-10 shadow-xl/30 max-w-4xl mx-auto rounded-2xl">
+        <div className="flex items-center justify-between p-5 shadow-xl/30 max-w-4xl mx-auto rounded-2xl">
           <div className="w-[40%]">
             <img className="" src={prod.thumbnail} alt="Album" />
           </div>
           <div className=" w-[60%]">
-            <div className="flex items-center justify-between">
+            <div className="relative">
               <h2 className="text-4xl mb-3">{prod.title}</h2>
-              <button onClick={handleClose} className="mt-[-90px] text-2xl hover:cursor-pointer"><FaRegCircleXmark /></button>
+              <button
+                onClick={handleClose}
+                className="absolute top-0  right-0  text-2xl hover:cursor-pointer"
+              >
+                <FaXmark />
+              </button>
             </div>
             <p className="text-3xl font-bold mb-3 text-[#eb5971]">
               $<span className="text-3xl">{prod.price}</span>

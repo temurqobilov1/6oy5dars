@@ -9,6 +9,7 @@ const initialState = () => {
     : {
         user: true,
         products: [],
+        likedProducts: [],
         totalAmount: 0,
         totalPrice: 0,
       };
@@ -51,6 +52,18 @@ const changeState = (state, action) => {
       const req = confirm(`Rostan ham ushbu ma'lumotlarni ochirmoqchimisiz ? `)
       if (!req) return state;
       return { ...state, products: [] };
+      case "ADD_LIKED":
+        return {
+          ...state,
+          likedProducts: [...state.likedProducts, payload]
+          };
+      case "REMOVE_LIKED":
+        return {
+          ...state,
+          likedProducts: state.likedProducts.filter((p)=> {
+            return p.id != payload;
+          })
+        }
     default:
       return state;
   }

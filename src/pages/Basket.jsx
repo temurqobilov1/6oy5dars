@@ -8,7 +8,7 @@ function Basket() {
   return (
     <div className="container">
 
-      <h1 className="text-3xl  text-center my-8">Basket</h1>
+      <h1 className="text-3xl  text-center my-8 font-bold">Basket</h1>
       {products.length === 0 ? (
         <p className="text-2xl text-center mt-[100px] italic">
           No products in the basket!

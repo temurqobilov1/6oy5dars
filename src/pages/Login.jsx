@@ -1,50 +1,41 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router";
+import FormInput from "../components/FormInput";
+import { useLogin } from "../hooks/useLogin";
 
 function Login() {
+  const { login } = useLogin();
+
+  const handleSubmit = (e) => {
+    e.preventDefault;
+
+    const formData = new FormData(e.target);
+
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    login(email, password);
+  };
   return (
-    <form
-      action=""
-      className="w-[460px]  mt-20 mx-auto bg-[#f2f4f7]  flex flex-col gap-4 py-6  rounded-xl shadow-2xl"
-    >
-      <div className="mx-auto mb-4">
-        <h1 className="text-5xl font-bold text-[#166fe5]">Login</h1>
+    <section className="grid place-items-center w-full max-w-105 h-full max-h-100 mx-auto my-auto p-2 rounded-2xl bg-[#00e6088b]">
+      <div className="w-full flex flex-col items-center">
+        <h3 className="text-center font-bold text-3xl">Login</h3>
+        <form onSubmit={handleSubmit} action="" className="w-full max-w-96">
+          <FormInput label="Your Email:" name="email" type="email" />
+          <FormInput label="New Password:" name="password" type="password" />
+          <div className="my-10 flex justify-center">
+            <button className=" btn btn-secondary w-full">Login</button>
+          </div>
+        </form>
+        <div>
+          <p>
+            If you don't have account!{" "}
+            <Link className="link link-primary" to="/register">
+              Register
+            </Link>
+          </p>
+        </div>
       </div>
-      <div className="mx-auto mb-3">
-        <input
-          className="border text-black px-3 rounded text-xl w-[360px] h-13"
-          type="email"
-          placeholder="Email address or phone number"
-        />
-      </div>
-      <div className="mx-auto mb-3">
-        <input
-          className="border text-black px-3 rounded text-xl w-[360px] h-13"
-          type="password"
-          placeholder="Password"
-        />
-      </div>
-      <div className="mx-auto mb-3">
-        <button
-          type="submit"
-          className="border text-white rounded text-2xl w-[360px] h-13 bg-[#166fe5] hover:cursor-pointer"
-        >
-          Login
-        </button>
-      </div>
-      <div className="mx-auto mb-3">
-        <h2 className="text-[#166fe5] italic">Forgot your account?</h2>
-      </div>
-      <div className="mx-auto mb-3">
-        <hr className="w-[300px] text-center text-[#868686]" />
-      </div>
-      <div className="mx-auto mb-3">
-        <NavLink to="/register">
-          <button className="border text-[#fff] rounded text-2xl w-[200px] h-13 bg-[#36a420] hover:cursor-pointer">
-            Sign up
-          </button>
-        </NavLink>
-      </div>
-    </form>
+    </section>
   );
 }
 

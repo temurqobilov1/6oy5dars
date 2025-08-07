@@ -1,64 +1,44 @@
-import { NavLink } from "react-router";
+import { Link } from "react-router";
+import FormInput from "../components/FormInput";
+import { useRegister } from "../hooks/useRegister";
 
 function Register() {
+  const { register } = useRegister();
+  const handleSubmit = (e) => {
+    e.preventDefault;
+
+    const formData = new FormData(e.target);
+
+    const firstName = formData.get("firstName");
+    const laststName = formData.get("laststName");
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    register(firstName, laststName, email, password);
+  };
   return (
-    <form
-      action=""
-      className="w-[460px]  mt-10 mx-auto bg-[#f2f4f7]  flex flex-col gap-4 py-3 px-6  rounded-xl shadow-2xl"
-    >
-      <div className="mx-auto mb-4">
-        <h1 className="text-5xl font-bold text-[#166fe5]">Sign up</h1>
-      </div>
-      <div className="mx-auto mb-3">
-        <input
-          className="border text-black px-3 rounded text-xl w-[360px] h-10"
-          type="text"
-          placeholder="Name"
-        />
-      </div>
-      <div className="mx-auto mb-3">
-        <input
-          className="border text-black px-3 rounded text-xl w-[360px] h-10"
-          type="text"
-          placeholder="Surname"
-        />
-      </div>
-      <div className="mx-auto mb-3">
-        <input
-          className="border text-black px-3 rounded text-xl w-[360px] h-10 hover:cursor-pointer"
-          type="date"
-        />
-      </div>
-      <div className="mx-auto mb-3">
-        <input
-          className="border text-black px-3 rounded text-xl w-[360px] h-10"
-          type="email"
-          placeholder="Phone number or email address"
-        />
-      </div>
-      <div className="mx-auto mb-3">
-        <input
-          className="border text-black px-3 rounded text-xl w-[360px] h-10"
-          type="password"
-          placeholder="New password"
-        />
-      </div>
-      <div className="mx-auto mb-3">
-        <button
-          type="submit"
-          className="border text-white rounded text-2xl w-[360px] h-13 bg-[#166fe5] hover:cursor-pointer"
-        >
-          Sign up
-        </button>
-      </div>
-      <div className="mx-auto mb-3">
-        <NavLink to="/login">
-          <p className="italic text-[#166fe5] hover:underline">
-            Do you already have an account?
+    <section className="grid place-items-center w-full max-w-105 h-full max-h-130 mx-auto my-auto p-2 rounded-2xl bg-[#00e6088b]">
+      <div className="w-full flex flex-col items-center">
+        <h3 className="text-center font-bold text-3xl">Register</h3>
+        <form onSubmit={handleSubmit} action="" className="w-full max-w-96">
+          <FormInput label="First Name:" name="firstName" type="text" />
+          <FormInput label="Last Name:" name="lastName" type="text" />
+          <FormInput label="Your Email:" name="email" type="email" />
+          <FormInput label="New Password:" name="password" type="password" />
+          <div className="my-10 flex justify-center">
+            <button className=" btn btn-secondary w-full">Register</button>
+          </div>
+        </form>
+        <div>
+          <p>
+            If you have account!{" "}
+            <Link className="link link-primary" to="/login">
+              Login
+            </Link>
           </p>
-        </NavLink>
+        </div>
       </div>
-    </form>
+    </section>
   );
 }
 

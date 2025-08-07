@@ -1,8 +1,31 @@
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../hooks/useGlobalContext";
+import { FaHeart, FaRegHeart } from "react-icons/fa6";
+import { useEffect, useState } from "react";
 
 function Product({ prod }) {
-  const { dispatch, products } = useGlobalContext();
+  
+  const { dispatch, products, likedProducts } = useGlobalContext();
+
+  const [alreadyLiked, setAlreadyLiked] = useState(false);
+
+  const addLiked = (e) => {
+    e.preventDefault();
+
+    dispatch({ type: "ADD_LIKED", payload: prod });
+    setAlreadyLiked(true);
+  };
+  const removeLiked = (e) => {
+    e.preventDefault();
+
+    setAlreadyLiked(false);
+    dispatch({ type: "REMOVE_LIKED", payload: prod.id });
+  };
+
+  useEffect(() => {
+    const item = likedProducts.find((p) => p.id == prod.id);
+    if (item) setAlreadyLiked(true);
+  }, [ ]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,8 +43,25 @@ function Product({ prod }) {
     <>
       <Link to={`/singleProduct/${prod.id}`}>
         <div className="card bg-base-100 w-full shadow-xl hover:shadow-xl/20 cursor-pointer">
-          <figure>
+          <figure className="relative">
             <img className="h-50" src={prod.thumbnail} alt="" />
+            {alreadyLiked && (
+              <button
+                onClick={removeLiked}
+                className="absolute top-3 right-5 text-xl hover:cursor-pointer "
+              >
+                <FaHeart /> 
+              </button>
+            )}
+            {!alreadyLiked && (
+              <button
+                onClickCapture={removeLiked}
+                onClick={addLiked}
+                className="absolute top-3 right-5 text-xl hover:cursor-pointer"
+              >
+                <FaRegHeart />
+              </button>
+            )}
           </figure>
           <div className="card-body">
             <h2 className="card-title line-clamp-1">{prod.title}</h2>

@@ -6,6 +6,7 @@ import {
   Login,
   Register,
   SingleProducts,
+  LikedProductsPage,
 } from "./pages";
 
 import MainLayout from "./layouts/MainLayout";
@@ -49,6 +50,10 @@ function App() {
         {
           path: "/basket",
           element: <Basket />,
+        },
+        {
+          path: "/likedProductsPage",
+          element: <LikedProductsPage />,
         },
       ],
     },
