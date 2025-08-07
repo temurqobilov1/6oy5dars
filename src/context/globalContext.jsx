@@ -7,7 +7,7 @@ const initialState = () => {
   return localStorage.getItem("products")
     ? JSON.parse(localStorage.getItem("products"))
     : {
-        user: true,
+        user: false,
         products: [],
         likedProducts: [],
         totalAmount: 0,
@@ -21,7 +21,6 @@ const changeState = (state, action) => {
   switch (type) {
     case "ADD_PRODUCT":
       return { ...state, products: [...state.products, payload] };
-
     case "INCREASE_AMOUNT":
       return {
         ...state,
@@ -49,21 +48,21 @@ const changeState = (state, action) => {
         totalPrice: payload.price,
       };
     case "CLEAR":
-      const req = confirm(`Rostan ham ushbu ma'lumotlarni ochirmoqchimisiz ? `)
+      const req = confirm(`Rostan ham ushbu ma'lumotlarni ochirmoqchimisiz ? `);
       if (!req) return state;
       return { ...state, products: [] };
-      case "ADD_LIKED":
-        return {
-          ...state,
-          likedProducts: [...state.likedProducts, payload]
-          };
-      case "REMOVE_LIKED":
-        return {
-          ...state,
-          likedProducts: state.likedProducts.filter((p)=> {
-            return p.id != payload;
-          })
-        }
+    case "ADD_LIKED":
+      return {
+        ...state,
+        likedProducts: [...state.likedProducts, payload],
+      };
+    case "REMOVE_LIKED":
+      return {
+        ...state,
+        likedProducts: state.likedProducts.filter((p) => {
+          return p.id != payload;
+        }),
+      };
     default:
       return state;
   }

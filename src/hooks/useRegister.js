@@ -1,7 +1,10 @@
-export function useRegister () {
-    const register = (firstName, lastName, email, password) => {
-        console.log(firstName,lastName,email,password)
-    };
+import { useState } from "react";
 
-    return {register};
+export function useRegister() {
+  const [isPanding, setIsPanding] = useState(false);
+  const register = async (firstName, lastName, email, password) => {
+    console.log(firstName, lastName, email, password);
+  };
+
+  return { register, isPanding };
 }
