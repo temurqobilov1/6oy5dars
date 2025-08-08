@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa6";
 
 function LikedProductsPage() {
-  const { likedProducts, cart, dispatch } = useGlobalContext(); 
-  // renamed 'products' to 'cart' for clarity if this is your basket
+  const { likedProducts, products: cart, dispatch } = useGlobalContext();
 
   const removeLiked = (id) => {
     dispatch({ type: "REMOVE_LIKED", payload: id });
@@ -12,7 +11,6 @@ function LikedProductsPage() {
 
   const handleSubmit = (prod) => {
     const item = cart.find((product) => product.id === prod.id);
-
     if (item) {
       dispatch({ type: "INCREASE_AMOUNT", payload: prod.id });
     } else {
@@ -25,7 +23,6 @@ function LikedProductsPage() {
       <h1 className="text-3xl font-bold my-8 text-center">
         Favorite products
       </h1>
-
       {likedProducts.length === 0 ? (
         <p className="text-center text-2xl mt-30">
           No your favorite products.
@@ -52,7 +49,6 @@ function LikedProductsPage() {
                   <FaHeart />
                 </button>
               </figure>
-
               <div className="card-body">
                 <h2 className="card-title line-clamp-1">{prod.title}</h2>
                 <p className="line-clamp-2">{prod.description}</p>
