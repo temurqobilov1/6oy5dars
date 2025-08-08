@@ -1,18 +1,25 @@
-import { useEffect, useReducer } from "react";
-import { createContext } from "react";
+import { useEffect, useReducer, createContext } from "react";
 
 export const GlobalContext = createContext();
 
+// Default shape of our state
+const defaultState = {
+  user: true,
+  products: [],       // basket/cart items
+  likedProducts: [],  // liked/favorite items
+  totalAmount: 0,
+  totalPrice: 0,
+};
+
+// Load from localStorage but ensure missing keys are filled in
 const initialState = () => {
-  return localStorage.getItem("products")
-    ? JSON.parse(localStorage.getItem("products"))
-    : {
-        user: true,
-        products: [],
-        likedProducts: [],
-        totalAmount: 0,
-        totalPrice: 0,
-      };
+  try {
+    const saved = localStorage.getItem("products");
+    return saved ? { ...defaultState, ...JSON.parse(saved) } : defaultState;
+  } catch (err) {
+    console.error("Failed to load state from localStorage", err);
+    return defaultState;
+  }
 };
 
 const changeState = (state, action) => {
@@ -21,48 +28,54 @@ const changeState = (state, action) => {
   switch (type) {
     case "ADD_PRODUCT":
       return { ...state, products: [...state.products, payload] };
+
     case "INCREASE_AMOUNT":
       return {
         ...state,
         products: state.products.map((product) =>
-          product.id == payload
+          product.id === payload
             ? { ...product, amount: product.amount + 1 }
             : product
         ),
       };
+
     case "DECREASE_AMOUNT":
       return {
         ...state,
         products: state.products
           .map((product) =>
-            product.id == payload
+            product.id === payload
               ? { ...product, amount: Math.max(0, product.amount - 1) }
               : product
           )
           .filter((product) => product.amount > 0),
       };
+
     case "CHANGE_AMOUNT_PRICE":
       return {
         ...state,
         totalAmount: payload.amount,
         totalPrice: payload.price,
       };
+
     case "CLEAR":
-      const req = confirm(`Rostan ham ushbu ma'lumotlarni ochirmoqchimisiz ? `);
-      if (!req) return state;
+      if (!window.confirm(`Rostan ham ushbu ma'lumotlarni ochirmoqchimisiz?`)) {
+        return state;
+      }
       return { ...state, products: [] };
+
     case "ADD_LIKED":
       return {
         ...state,
         likedProducts: [...state.likedProducts, payload],
       };
+
     case "REMOVE_LIKED":
       return {
         ...state,
-        likedProducts: state.likedProducts.filter((p) => {
-          return p.id != payload;
-        }),
+        likedProducts: state.likedProducts.filter((p) => p.id !== payload),
       };
+
     default:
       return state;
   }
@@ -82,8 +95,18 @@ export function GlobalContextProvider({ children }) {
 
     dispatch({ type: "CHANGE_AMOUNT_PRICE", payload: { price, amount } });
 
-    localStorage.setItem("products", JSON.stringify(state));
-  }, [state.products]);
+    // Save only necessary parts to localStorage
+    localStorage.setItem(
+      "products",
+      JSON.stringify({
+        products: state.products,
+        likedProducts: state.likedProducts,
+        user: state.user,
+        totalAmount: state.totalAmount,
+        totalPrice: state.totalPrice,
+      })
+    );
+  }, [state.products, state.likedProducts]);
 
   return (
     <GlobalContext.Provider value={{ ...state, dispatch }}>
